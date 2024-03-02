@@ -1,0 +1,44 @@
+# Main Dashboard Filter
+
+Read User Filter Input
+Create Variable UserFilterSelection
+
+If UserFilterSelection == author {
+
+Loop for Each IOCFeedArticle in MainTable {
+If UserFilterSelection == IOCFeedArticleAuthor {
+    Load IOCFeedArticle into MainTableCache} 
+    }
+
+}
+
+If UserFilterSelection == ThreatActor {
+
+Loop for Each IOCFeedArticle in MainTable {
+If UserFilterSelection == ThreatActorTag {
+    Load IOCFeedArticle into MainTableCache} 
+    }
+
+}
+
+If MainTable Currently Filtered {
+    Create Variable CurrentUserFilterSelection containing Current MainTable Filters 
+
+    Loop for Each Loaded IOCFeedArticle in MainTableCache {
+        If IOCFeedArticle author or ThreatActor != author or ThreatActor in CurrentUserFilterSelection {
+            Remove IOCFeedArticle from MainTableCache
+            Update MainTableCache
+        }
+    }
+
+Add MainTableCache to MainTable and Display to User
+
+} Else {
+
+    Add MainTableCache to MainTable and Display to User
+
+
+}
+
+
+
