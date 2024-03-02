@@ -1,0 +1,40 @@
+# Main Dashbaord Loading
+
+get IOCFeedConnections from UserIOCFeed Database
+
+Loop for each Connection in IOCFeedConnections {
+Ping Feed Link
+
+If Ping Success {
+Connect to Feed Provider
+Download Latest Feed
+
+If Previous Downloaded Feed Exisits {
+    Overwrite OfflineBackupCache with latest feed
+    Load Feed into MainTable
+} Else {
+    Save feed into OfflineBackupCache
+    Load Feed into MainTable
+    
+}
+
+} Else
+Scan OfflineBackupCache for previously Saved Feed
+If Previously Saved Feed Found {
+
+Load Last Saved feed from OfflineBackupCache
+mark feed author "OFFLINE" IN Filter Table
+
+} Else {
+    mark feed author "OFFLINE" IN Filter Table 
+}
+
+
+ }
+
+Load MainTable
+End
+
+
+
+
